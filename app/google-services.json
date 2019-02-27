@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "944297071608",
+    "firebase_url": "https://masproject-69462.firebaseio.com",
+    "project_id": "masproject-69462",
+    "storage_bucket": "masproject-69462.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:944297071608:android:0ffcf9960859f08f",
+        "android_client_info": {
+          "package_name": "hmq.coverage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "944297071608-nc9eva1p5rrkr8794ltqdsdn49uv4pup.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "hmq.coverage",
+            "certificate_hash": "1991851d1e4c9c57edb2d53cafa27dc873522db2"
+          }
+        },
+        {
+          "client_id": "944297071608-s3peqvousrbic0konnk4072nnqrf6bqm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDNvubT5hgS2IyGR4IXPa10MrqqX6rpSg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "944297071608-s3peqvousrbic0konnk4072nnqrf6bqm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
