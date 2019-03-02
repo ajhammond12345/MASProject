@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeActivity">
+
+    <Button
+        android:id="@+id/getCoverage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get Coverage"
+        tools:layout_editor_absoluteX="143dp"
+        tools:layout_editor_absoluteY="255dp" />
+
+    <Button
+        android:id="@+id/cover"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cover"
+        tools:layout_editor_absoluteX="160dp"
+        tools:layout_editor_absoluteY="404dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Coverage"
+        tools:layout_editor_absoluteX="175dp"
+        tools:layout_editor_absoluteY="59dp" />
+</android.support.constraint.ConstraintLayout>
