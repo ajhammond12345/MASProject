@@ -65,6 +65,8 @@ public class Database {
     }
 
     public void addRequest(Request request, final OnGetDataInterface listener) {
+        String newID = database.child("requests").push().getKey();
+        request.setRid(newID);
         changeRequest(request, listener);
     }
 
