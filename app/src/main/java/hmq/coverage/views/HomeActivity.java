@@ -1,3 +1,6 @@
+/**
+ * @author Stuart Malone
+ */
 package hmq.coverage.views;
 
 import android.support.v7.app.AppCompatActivity;

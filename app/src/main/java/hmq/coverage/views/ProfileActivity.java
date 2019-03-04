@@ -1,3 +1,7 @@
+/**
+ * @author Stuart Malone
+ */
+
 package hmq.coverage.views;
 
 import android.content.Intent;
