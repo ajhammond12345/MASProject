@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import hmq.coverage.R;
 import hmq.coverage.model.Model;
+import hmq.coverage.model.User;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void registerUser() {
-        String userEmail = email.getText().toString().trim();
+        final String userEmail = email.getText().toString().trim();
         String userPassword = password.getText().toString().trim();
 
         if( TextUtils.isEmpty( userEmail ) ) {
@@ -87,6 +88,8 @@ public class MainActivity extends AppCompatActivity {
                     if ( task.isSuccessful() ) {
                         // User is successfully registered and logged in; begin profile activity
                         Toast.makeText( MainActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
+                        User user = new User(userEmail);
+                        Model.getInstance().setCurrentUser(user);
                         finish();
                         startActivity( new Intent( getApplicationContext(), HomeActivity.class));
                     } else {

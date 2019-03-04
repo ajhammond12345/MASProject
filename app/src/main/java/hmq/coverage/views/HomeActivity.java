@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import hmq.coverage.R;
+import hmq.coverage.model.Model;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -18,6 +19,8 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        Model.getInstance().getLocations();
 
         getCoverage = findViewById(R.id.getCoverage);
         cover = findViewById(R.id.cover);

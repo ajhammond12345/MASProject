@@ -22,6 +22,7 @@ public class Model {
     private final Set<Location> locations;
     private final Set<Request> requests;
     private User currentUser;
+    private Location currentLocation;
 
     /**
      * Default constructor for model
@@ -48,6 +49,14 @@ public class Model {
      */
     public void setCurrentUser(User user) {
         currentUser = user;
+    }
+
+    public Location getCurrentLocation() {
+        return currentLocation;
+    }
+
+    public void setCurrentLocation(Location location) {
+        currentLocation = location;
     }
 
 
@@ -153,6 +162,7 @@ public class Model {
             @Override
             public void onDataRetrieved(DataSnapshot data) {
                 for (DataSnapshot dataSnapshot: data.getChildren()) {
+                    locations.remove(dataSnapshot.getValue(Location.class));
                     locations.add(dataSnapshot.getValue(Location.class));
                     Log.d("LoadedLocation", dataSnapshot.getValue(Location.class).toString());
                 }
@@ -182,7 +192,7 @@ public class Model {
      * Add Request to the model and database
      * @param request to add
      */
-    public void addRequest(Request request, final OnGetDataInterface listener) {
+    public void addRequest(final Request request, final OnGetDataInterface listener) {
         new Database().addRequest(request, new OnGetDataInterface() {
             @Override
             public void onDataRetrieved(DataSnapshot data) {
@@ -195,6 +205,8 @@ public class Model {
             }
         });
         requests.add(request);
+
+
     }
 
     /**

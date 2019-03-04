@@ -70,11 +70,11 @@ public class CreateRequestActivity extends AppCompatActivity implements AdapterV
                 String time = timeText.getText().toString();
                 String money = moneyText.getText().toString();
                 if (location != null && !date.equals("") && !time.equals("") && !money.equals("")) {
-                    Request request = new Request(model.getCurrentUser(), date, time, location, money);
+                    final Request request = new Request(model.getCurrentUser(), date, time, location.getLid(), money);
                     model.addRequest(request, new OnGetDataInterface() {
                         @Override
                         public void onDataRetrieved(DataSnapshot data) {
-                            startActivity( new Intent( getApplicationContext(), UserListActivity.class ) );
+
                         }
 
                         @Override
@@ -82,6 +82,19 @@ public class CreateRequestActivity extends AppCompatActivity implements AdapterV
                             Toast.makeText(CreateRequestActivity.this, "Unable to Create Request", Toast.LENGTH_SHORT).show();
                         }
                     });
+                    location.addRequest(request);
+                    model.updateLocation(location, new OnGetDataInterface() {
+                        @Override
+                        public void onDataRetrieved(DataSnapshot data) {
+                            startActivity( new Intent( getApplicationContext(), HomeActivity.class ) );
+                        }
+
+                        @Override
+                        public void onFailed() {
+                            Toast.makeText(CreateRequestActivity.this, "Error Creating Request", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
                 } else {
                     Toast.makeText(CreateRequestActivity.this, "Missing Data", Toast.LENGTH_SHORT).show();
                 }

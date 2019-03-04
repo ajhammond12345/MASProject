@@ -33,6 +33,21 @@ public class Location {
     }
     //Eventually add more as project progresses, initially can just be a name.
 
+    public List<Request> getRequests() {
+        return requests;
+    }
+    public void addRequest(Request request) {
+        requests.add(request);
+    }
+
+    public void checkIn(User user) {
+        checkedIn.add(user);
+    }
+
+    public void checkOut(User user) {
+        checkedIn.remove(user);
+    }
+
     @Override
     public String toString() {
         return name;
