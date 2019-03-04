@@ -1,6 +1,7 @@
 package hmq.coverage.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by AlexanderHammond on 2/27/19.
@@ -9,13 +10,43 @@ import java.util.ArrayList;
 public class Location {
     String lid;
     String name;
-    ArrayList<User> checkedIn;
-    ArrayList<Request> requests;
+    List<User> checkedIn;
+    List<Request> requests;
+
+    public Location(String id, String n, List<User> u, List<Request> r) {
+        lid = id;
+        name = n;
+        checkedIn = u;
+        requests = r;
+    }
+
+    public Location(String n) {
+        this("", n, new ArrayList<User>(), new ArrayList<Request>());
+    }
+
+    public Location() {
+        this("", "", new ArrayList<User>(), new ArrayList<Request>());
+    }
 
     public String getLid() {
         return lid;
     }
     //Eventually add more as project progresses, initially can just be a name.
+
+    public List<Request> getRequests() {
+        return requests;
+    }
+    public void addRequest(Request request) {
+        requests.add(request);
+    }
+
+    public void checkIn(User user) {
+        checkedIn.add(user);
+    }
+
+    public void checkOut(User user) {
+        checkedIn.remove(user);
+    }
 
     @Override
     public String toString() {

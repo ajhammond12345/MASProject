@@ -20,6 +20,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import hmq.coverage.R;
+import hmq.coverage.model.Model;
+import hmq.coverage.model.User;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -60,8 +62,10 @@ public class LoginActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if ( task.isSuccessful() ) {
                     currentUser = mAuth.getCurrentUser();
+                    User current = new User(currentUser.getUid(), currentUser.getEmail());
+                    Model.getInstance().setCurrentUser(current);
                     finish();
-                    startActivity( new Intent( getApplicationContext(), ProfileActivity.class ) );
+                    startActivity( new Intent( getApplicationContext(), HomeActivity.class ) );
                 } else {
                     Toast.makeText(LoginActivity.this, "Unable to Login", Toast.LENGTH_SHORT).show();
                 }

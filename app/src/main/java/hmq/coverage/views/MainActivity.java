@@ -4,6 +4,7 @@
 
 package hmq.coverage.views;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -16,10 +17,13 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 import hmq.coverage.R;
+import hmq.coverage.model.Model;
+import hmq.coverage.model.User;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,6 +37,10 @@ public class MainActivity extends AppCompatActivity {
     // Class methods
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Model model = Model.getInstance();
+        model.getLocations();
+        model.getRequests();
+        FirebaseApp.initializeApp(MainActivity.this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         email = (EditText) findViewById(R.id.signup_email_input);
@@ -63,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void registerUser() {
-        String userEmail = email.getText().toString().trim();
+        final String userEmail = email.getText().toString().trim();
         String userPassword = password.getText().toString().trim();
 
         if( TextUtils.isEmpty( userEmail ) ) {
@@ -84,8 +92,10 @@ public class MainActivity extends AppCompatActivity {
                     if ( task.isSuccessful() ) {
                         // User is successfully registered and logged in; begin profile activity
                         Toast.makeText( MainActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
+                        User user = new User(userEmail);
+                        Model.getInstance().setCurrentUser(user);
                         finish();
-                        startActivity( new Intent( getApplicationContext(), ProfileActivity.class));
+                        startActivity( new Intent( getApplicationContext(), HomeActivity.class));
                     } else {
                         Toast.makeText( MainActivity.this, "Registration Unsuccessful. Try Again", Toast.LENGTH_SHORT).show();
                     }

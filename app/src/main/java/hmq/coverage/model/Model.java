@@ -22,6 +22,7 @@ public class Model {
     private final Set<Location> locations;
     private final Set<Request> requests;
     private User currentUser;
+    private Location currentLocation;
 
     /**
      * Default constructor for model
@@ -48,6 +49,14 @@ public class Model {
      */
     public void setCurrentUser(User user) {
         currentUser = user;
+    }
+
+    public Location getCurrentLocation() {
+        return currentLocation;
+    }
+
+    public void setCurrentLocation(Location location) {
+        currentLocation = location;
     }
 
 
@@ -112,8 +121,8 @@ public class Model {
     }
 
     /**
-     * Updates a shelter in the model and database
-     * @param location the updated shelter (identifies by key)
+     * Updates a location in the model and database
+     * @param location the updated location (identified by key)
      * @param listener an interface to handle the response from the database
      */
     public void updateLocation(Location location, OnGetDataInterface listener) {
@@ -124,38 +133,38 @@ public class Model {
     }
 
     /**
-     * Shelter to add to the model and database
+     * Add Location to the model and database
      * @param location to add
      */
-    public void addLocation(Location location) {
+    public void addLocation(Location location, final OnGetDataInterface listener) {
         locations.add(location);
         new Database().addLocation(location, new OnGetDataInterface() {
             @Override
             public void onDataRetrieved(DataSnapshot data) {
-                //nothing needed
+                listener.onDataRetrieved(data);
             }
 
             @Override
             public void onFailed() {
-                //nothing needed
+                listener.onFailed();
             }
         });
     }
 
     /**
-     * Retrieves a set of all the shelters
-     * @return a set of all the shelters stored in the model, and refreshes the list in the model
+     * Retrieves a set of all the Locations
+     * @return a set of all the locations stored in the model, and refreshes the list in the model
      * to match the database
      */
     public Set<Location> getLocations() {
-        //should be changed to update the list of shelters from the database
         Database db = new Database();
         db.getLocations(new OnGetDataInterface() {
             @Override
             public void onDataRetrieved(DataSnapshot data) {
                 for (DataSnapshot dataSnapshot: data.getChildren()) {
+                    locations.remove(dataSnapshot.getValue(Location.class));
                     locations.add(dataSnapshot.getValue(Location.class));
-                    Log.d("LoadedShelter", dataSnapshot.getValue(Location.class).toString());
+                    Log.d("LoadedLocation", dataSnapshot.getValue(Location.class).toString());
                 }
             }
 
@@ -165,6 +174,63 @@ public class Model {
             }
         });
         return locations;
+    }
+
+    /**
+     * Updates a request in the model and database
+     * @param request the updated request (identifies by key)
+     * @param listener an interface to handle the response from the database
+     */
+    public void updateRequest(Request request, OnGetDataInterface listener) {
+        requests.remove(request);
+        requests.add(request);
+        Database db = new Database();
+        db.updateRequest(request, listener);
+    }
+
+    /**
+     * Add Request to the model and database
+     * @param request to add
+     */
+    public void addRequest(final Request request, final OnGetDataInterface listener) {
+        new Database().addRequest(request, new OnGetDataInterface() {
+            @Override
+            public void onDataRetrieved(DataSnapshot data) {
+                listener.onDataRetrieved(data);
+            }
+
+            @Override
+            public void onFailed() {
+                listener.onFailed();
+            }
+        });
+        requests.add(request);
+
+
+    }
+
+    /**
+     * Retrieves a set of all the requests
+     * @return a set of all the requests stored in the model, and refreshes the set in the model
+     * to match the database
+     */
+    public Set<Request> getRequests() {
+        Database db = new Database();
+        db.getRequests(new OnGetDataInterface() {
+            @Override
+            public void onDataRetrieved(DataSnapshot data) {
+                for (DataSnapshot dataSnapshot: data.getChildren()) {
+                    requests.add(dataSnapshot.getValue(Request.class));
+                    Log.d("LoadedRequest", dataSnapshot.getValue(Request.class).toString());
+                }
+            }
+
+            @Override
+            public void onFailed() {
+
+            }
+        });
+        return requests;
     }
 
     //method used to access the singleton
