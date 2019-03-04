@@ -1,13 +1,15 @@
-package hmq.coverage;
+package hmq.coverage.views;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class CreateRequestActivity extends AppCompatActivity {
+import hmq.coverage.R;
+
+public class UserListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_request);
+        setContentView(R.layout.activity_user_list);
     }
 }

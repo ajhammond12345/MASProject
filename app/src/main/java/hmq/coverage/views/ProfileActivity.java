@@ -1,4 +1,4 @@
-package hmq.coverage;
+package hmq.coverage.views;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import hmq.coverage.R;
 
 public class ProfileActivity extends AppCompatActivity {
 

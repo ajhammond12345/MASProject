@@ -1,4 +1,4 @@
-package hmq.coverage;
+package hmq.coverage.model;
 
 /**
  * Created by AlexanderHammond on 2/27/19.
@@ -12,5 +12,9 @@ public class User {
 
     public String getUid() {
         return uid;
+    }
+
+    public String toString() {
+        return fname + " " + lname;
     }
 }
