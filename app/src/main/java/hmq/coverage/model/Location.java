@@ -36,9 +36,15 @@ public class Location {
     public List<Request> getRequests() {
         return requests;
     }
+
     public void addRequest(Request request) {
         requests.add(request);
     }
+
+    public void removeRequest(Request request) {
+        requests.remove(request);
+    }
+
 
     public void checkIn(User user) {
         checkedIn.add(user);

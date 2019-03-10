@@ -70,7 +70,7 @@ public class CreateRequestActivity extends AppCompatActivity implements AdapterV
                 String time = timeText.getText().toString();
                 String money = moneyText.getText().toString();
                 if (location != null && !date.equals("") && !time.equals("") && !money.equals("")) {
-                    final Request request = new Request(model.getCurrentUser(), date, time, location.getLid(), money);
+                    final Request request = new Request(model.getCurrentUser().getUid(), date, time, location.getLid(), money);
                     model.addRequest(request, new OnGetDataInterface() {
                         @Override
                         public void onDataRetrieved(DataSnapshot data) {

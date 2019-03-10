@@ -3,6 +3,7 @@ package hmq.coverage.views;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -50,10 +51,11 @@ public class CheckInActivity extends AppCompatActivity implements AdapterView.On
             public void onClick(View view) {
                 if (location != null) {
                     location.checkIn(model.getCurrentUser());
+                    model.setCurrentLocation(location);
                     model.updateLocation(location, new OnGetDataInterface() {
                         @Override
                         public void onDataRetrieved(DataSnapshot data) {
-                            //nothing
+                            startActivity( new Intent( getApplicationContext(), RequestListActivity.class ) );
                         }
 
                         @Override
@@ -61,8 +63,6 @@ public class CheckInActivity extends AppCompatActivity implements AdapterView.On
                             //nothing
                         }
                     });
-                    model.setCurrentLocation(location);
-                    startActivity( new Intent( getApplicationContext(), RequestListActivity.class ) );
                 } else {
                     Toast.makeText(CheckInActivity.this, "Select Location", Toast.LENGTH_SHORT).show();
                 }

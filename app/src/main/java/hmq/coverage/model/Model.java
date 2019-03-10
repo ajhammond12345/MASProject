@@ -23,6 +23,7 @@ public class Model {
     private final Set<Request> requests;
     private User currentUser;
     private Location currentLocation;
+    private Request currentRequest;
 
     /**
      * Default constructor for model
@@ -57,6 +58,14 @@ public class Model {
 
     public void setCurrentLocation(Location location) {
         currentLocation = location;
+    }
+
+    public Request getCurrentRequest() {
+        return currentRequest;
+    }
+
+    public void setCurrentRequest(Request request) {
+        currentRequest = request;
     }
 
 
@@ -174,6 +183,15 @@ public class Model {
             }
         });
         return locations;
+    }
+
+    public Location getLocation(String lid) {
+        for (Location location : locations) {
+            if (location.getLid().equals(lid)) {
+                return location;
+            }
+        }
+        return null;
     }
 
     /**

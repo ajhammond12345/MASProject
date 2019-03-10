@@ -18,20 +18,33 @@ import hmq.coverage.R;
 import hmq.coverage.interfaces.OnGetDataInterface;
 import hmq.coverage.model.Location;
 import hmq.coverage.model.Model;
+import hmq.coverage.model.Request;
 
 public class RequestListActivity extends AppCompatActivity {
+
+    RecyclerView recyclerView;
+    RecyclerAdapter mAdapter;
+    RecyclerView.LayoutManager layoutManager;
+
+    private View.OnClickListener onItemClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            //TODO: Step 4 of 4: Finally call getTag() on the view.
+            // This viewHolder will have all required values.
+            RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
+            int position = viewHolder.getAdapterPosition();
+            // viewHolder.getItemId();
+            // viewHolder.getItemViewType();
+            // viewHolder.itemView;
+            Request selected = Model.getInstance().getCurrentLocation().getRequests().get(position);
+            Model.getInstance().setCurrentRequest(selected);
+            startActivity( new Intent( getApplicationContext(), RequestDetailActivity.class));
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_request_list);
-
-
-
-        RecyclerView recyclerView;
-        RecyclerView.Adapter mAdapter;
-        RecyclerView.LayoutManager layoutManager;
-
         setContentView(R.layout.activity_request_list);
         recyclerView = (RecyclerView) findViewById(R.id.request_list);
 
@@ -47,6 +60,7 @@ public class RequestListActivity extends AppCompatActivity {
 
         mAdapter = new RecyclerAdapter(Model.getInstance().getCurrentLocation().getRequests());
         recyclerView.setAdapter(mAdapter);
+        mAdapter.setmOnItemClickListener(onItemClickListener);
 
 
 

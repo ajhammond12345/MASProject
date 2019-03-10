@@ -11,33 +11,50 @@ import java.util.List;
 public class Request {
     String rid;
 
-    User requester;
+    String uid;
     String date;
     String time;
-    String location_id;
+    String locationID;
     String amount;
 
-    User finalCover;
-    ArrayList<User> potentialCoverage;
+    String finalCover;
+    ArrayList<String> potentialCoverage;
 
-    public Request(String id, User r, String d, String t, String l, String a, User f, List<User> p) {
+    public Request(String id, String r, String d, String t, String l, String a, String f, List<String> p) {
         rid = id;
-        requester = r;
+        uid = r;
         date = d;
         time = t;
-        location_id = l;
+        locationID = l;
         amount = a;
         finalCover = f;
         potentialCoverage = new ArrayList<>(p);
     }
 
-    public Request(User r, String d, String t, String l, String a) {
-        this("", r, d, t, l, a, null, new ArrayList<User>());
+    public Request(String r, String d, String t, String l, String a) {
+        this("", r, d, t, l, a, "", new ArrayList<String>());
     }
 
     public Request() {
-        this("", null, "", "", "", "", null, new ArrayList<User>());
+        this("", null, "", "", "", "", "", new ArrayList<String>());
     }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public String getAmount() {
+        return amount;
+    }
+
 
     public String getRid() {
         return rid;
@@ -48,17 +65,20 @@ public class Request {
     }
 
     public String getLocationID() {
-        return location_id;
+        return locationID;
     }
 
     public void setLocationID(String loc_id) {
-        location_id = loc_id;
+        locationID = loc_id;
+    }
+
+    public void setFinalCover(String id) {
+        finalCover = id;
     }
 
     @Override
     public String toString() {
-        String name = requester != null ? requester.fname + " " + requester.lname: "Unnamed";
-        return "Request By: " + name + " on " + date + " at " + time + " for $" + amount + ".";
+        return "Request on " + date + " at " + time + " for $" + amount + ".";
     }
 
     @Override
