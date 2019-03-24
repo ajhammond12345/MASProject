@@ -87,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
                 .requestIdToken("944297071608-s3peqvousrbic0konnk4072nnqrf6bqm.apps.googleusercontent.com")//(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
+        // TODO: NEED TO REMOVE THE HARDCODED IdToken from google.json
         // [END config_signin]
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
