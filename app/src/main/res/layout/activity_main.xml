@@ -2,12 +2,12 @@
 
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:orientation="vertical"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-tools:context="hmq.coverage.views.MainActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="hmq.coverage.views.MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
@@ -35,15 +35,16 @@ tools:context="hmq.coverage.views.MainActivity">
         android:hint="password"
         android:inputType="textPassword"
         android:padding="10dp" />
-<Button
-    android:id="@+id/button_register"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Register"
-    android:background="#000"
-    android:textColor="#fff"
-    android:layout_gravity="center"
-    android:layout_marginTop="40dp"/>
+
+    <Button
+        android:id="@+id/button_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:background="#000"
+        android:text="Register"
+        android:textColor="#fff" />
 
     <Button
         android:id="@+id/button_login"
@@ -54,4 +55,14 @@ tools:context="hmq.coverage.views.MainActivity">
         android:background="#000"
         android:text="Login"
         android:textColor="#fff" />
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/google_sign_in_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="24dp" />
+
 </LinearLayout>
