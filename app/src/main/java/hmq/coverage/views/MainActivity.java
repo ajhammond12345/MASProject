@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     // Class members
     private FirebaseAuth mAuth;
     private EditText password;
+    private EditText password1;
     private EditText email;
     private Button button_register;
     private Button button_login;
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         email = (EditText) findViewById(R.id.signup_email_input);
         password = (EditText) findViewById(R.id.signup_password_input);
+        password1 = (EditText) findViewById(R.id.signup_password_input1);
         button_register = (Button) findViewById(R.id.button_register);
         button_login = (Button) findViewById(R.id.button_login);
         mAuth = FirebaseAuth.getInstance();
@@ -158,6 +160,7 @@ public class MainActivity extends AppCompatActivity {
     public void registerUser() {
         final String userEmail = email.getText().toString().trim();
         String userPassword = password.getText().toString().trim();
+        String userPassword1 = password1.getText().toString().trim();
 
         if( TextUtils.isEmpty( userEmail ) ) {
             Toast.makeText(this, "Email field is empty.", Toast.LENGTH_SHORT).show();
@@ -165,6 +168,16 @@ public class MainActivity extends AppCompatActivity {
         }
         if( TextUtils.isEmpty( userPassword ) ) {
             Toast.makeText(this, "Password field is empty.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if( TextUtils.isEmpty( userPassword1 ) ) {
+            Toast.makeText(this, "Confirm Password field is empty.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if( !userPassword.equals(userPassword1) ) {
+            Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show();
             return;
         }
 

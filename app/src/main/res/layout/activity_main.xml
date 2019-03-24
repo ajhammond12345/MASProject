@@ -36,6 +36,15 @@
         android:inputType="textPassword"
         android:padding="10dp" />
 
+    <EditText
+        android:id="@+id/signup_password_input1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:hint="confirm password"
+        android:inputType="textPassword"
+        android:padding="10dp" />
+
     <Button
         android:id="@+id/button_register"
         android:layout_width="match_parent"
