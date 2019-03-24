@@ -21,7 +21,7 @@ public class ProfileActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser user;
     private TextView Email;
-    private TextView Uid;
+//    private TextView Uid;
     private Button logout;
 
 
@@ -30,7 +30,7 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         Email = (TextView) findViewById( R.id.profileEmail );
-        Uid = (TextView) findViewById( R.id.profileUid );
+//        Uid = (TextView) findViewById( R.id.profileUid );
         mAuth = FirebaseAuth.getInstance();
         logout = (Button) findViewById( R.id.button_logout );
         user = mAuth.getCurrentUser();
@@ -49,9 +49,9 @@ public class ProfileActivity extends AppCompatActivity {
 
         if ( user != null ) {
             String email = user.getEmail();
-            String uid = user.getUid();
+//            String uid = user.getUid();
             Email.setText( email );
-            Uid.setText( uid );
+//            Uid.setText( uid );
         }
     }
 }

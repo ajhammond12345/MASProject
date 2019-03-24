@@ -15,6 +15,7 @@ import hmq.coverage.model.Model;
 public class HomeActivity extends AppCompatActivity {
 
     Button getCoverage;
+    Button getCoverage1;
     Button cover;
     Button profile;
 
@@ -26,6 +27,7 @@ public class HomeActivity extends AppCompatActivity {
         Model.getInstance().getLocations();
 
         getCoverage = findViewById(R.id.getCoverage);
+        getCoverage1 = findViewById(R.id.getCoverage1);
         cover = findViewById(R.id.cover);
         profile = findViewById(R.id.profile_button);
 
@@ -33,6 +35,15 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (view == getCoverage) {
+                    startActivity( new Intent( getApplicationContext(), CreateRequestActivity.class ) );
+                }
+            }
+        });
+
+        getCoverage1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (view == getCoverage1) {
                     startActivity( new Intent( getApplicationContext(), CreateRequestActivity.class ) );
                 }
             }
