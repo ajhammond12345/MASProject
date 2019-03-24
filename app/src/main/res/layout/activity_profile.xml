@@ -36,7 +36,7 @@ tools:context="hmq.coverage.views.MainActivity">
             android:id="@+id/profileUid"/>
         <Button
             android:id="@+id/button_logout"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Logout"
             android:layout_gravity="center"/>

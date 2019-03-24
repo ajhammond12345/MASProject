@@ -38,14 +38,15 @@ tools:context="hmq.coverage.views.MainActivity">
             android:hint="password"
             android:id="@+id/login_password_input"
             android:inputType="textPassword"/>
+
         <Button
             android:id="@+id/login"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Login"
-            android:background="#000"
-            android:textColor="#fff"
             android:layout_gravity="center"
-            android:layout_marginTop="40dp"/>
+            android:layout_marginTop="40dp"
+            android:background="#000"
+            android:text="Login"
+            android:textColor="#fff" />
     </LinearLayout>
 </LinearLayout>
