@@ -37,6 +37,10 @@ public class Location {
         return requests;
     }
 
+    public List<User> getCheckedIn() {
+        return checkedIn;
+    }
+
     public void addRequest(Request request) {
         requests.add(request);
     }

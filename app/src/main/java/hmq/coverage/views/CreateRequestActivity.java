@@ -4,8 +4,14 @@ import android.app.DatePickerDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.DatePicker;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
 import android.app.TimePickerDialog;
@@ -30,6 +36,7 @@ import com.google.firebase.database.DataSnapshot;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 import hmq.coverage.R;
@@ -119,7 +126,7 @@ public class CreateRequestActivity extends AppCompatActivity implements AdapterV
         createRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String date = eText.getText().toString();
+                final String date = eText.getText().toString();
                 String time = eText1.getText().toString();
                 String money = moneyText.getText().toString();
                 if (location != null && !date.equals("") && !time.equals("") && !money.equals("")) {
@@ -136,10 +143,19 @@ public class CreateRequestActivity extends AppCompatActivity implements AdapterV
                         }
                     });
                     location.addRequest(request);
+                    model.setCurrentLocation(location);
                     model.updateLocation(location, new OnGetDataInterface() {
                         @Override
                         public void onDataRetrieved(DataSnapshot data) {
-                            startActivity( new Intent( getApplicationContext(), HomeActivity.class ) );
+                            Date today = new Date();
+                            DateFormat format = new SimpleDateFormat("dd/M/yyyy");
+                            Log.d("Today's date", format.format(today));
+                            Log.d("Date passed in", date);
+                            if (date.equals(format.format(today))) {
+                                startActivity( new Intent( getApplicationContext(), UserListActivity.class ) );
+                            } else {
+                                startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                            }
                         }
 
                         @Override

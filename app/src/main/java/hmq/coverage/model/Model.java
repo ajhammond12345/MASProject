@@ -24,6 +24,7 @@ public class Model {
     private User currentUser;
     private Location currentLocation;
     private Request currentRequest;
+    private User selectedUser;
 
     /**
      * Default constructor for model
@@ -66,6 +67,14 @@ public class Model {
 
     public void setCurrentRequest(Request request) {
         currentRequest = request;
+    }
+
+    public User getSelectedUser() {
+        return selectedUser;
+    }
+
+    public void setSelectedUser(User user) {
+        selectedUser = user;
     }
 
 
