@@ -1,5 +1,15 @@
 package hmq.coverage.views;
 
+import android.app.DatePickerDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.text.InputType;
+import android.widget.Button;
+import android.widget.DatePicker;
+import java.util.Calendar;
+
+import android.app.TimePickerDialog;
+import android.widget.TimePicker;
 import android.content.Intent;
 import android.database.DataSetObserver;
 import android.support.v7.app.AppCompatActivity;
@@ -36,6 +46,10 @@ public class CreateRequestActivity extends AppCompatActivity implements AdapterV
     Spinner locationSpinner;
     EditText moneyText;
     Button createRequest;
+    DatePickerDialog picker;
+    TimePickerDialog picker1;
+    EditText eText;
+    EditText eText1;
     Location location;
     private final Model model = Model.getInstance();
 
@@ -45,7 +59,7 @@ public class CreateRequestActivity extends AppCompatActivity implements AdapterV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_request);
 
-        dateText = findViewById(R.id.date);
+        dateText = findViewById(R.id.time);
         timeText = findViewById(R.id.time);
         locationSpinner = findViewById(R.id.location_select);
         List<Location> locations = new ArrayList<>(model.getLocations());
@@ -55,6 +69,45 @@ public class CreateRequestActivity extends AppCompatActivity implements AdapterV
                 return location.toString().compareToIgnoreCase(t1.toString());
             }
         });*/
+        eText=(EditText) findViewById(R.id.date1);
+        eText.setInputType(InputType.TYPE_NULL);
+        eText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar cldr = Calendar.getInstance();
+                int day = cldr.get(Calendar.DAY_OF_MONTH);
+                int month = cldr.get(Calendar.MONTH);
+                int year = cldr.get(Calendar.YEAR);
+                // date picker dialog
+                picker = new DatePickerDialog(CreateRequestActivity.this,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                eText.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                            }
+                        }, year, month, day);
+                picker.show();
+            }
+        });
+        eText1=(EditText) findViewById(R.id.time1);
+        eText1.setInputType(InputType.TYPE_NULL);
+        eText1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar cldr = Calendar.getInstance();
+                int hour = cldr.get(Calendar.HOUR_OF_DAY);
+                int minutes = cldr.get(Calendar.MINUTE);
+                // time picker dialog
+                picker1 = new TimePickerDialog(CreateRequestActivity.this,
+                        new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
+                                eText1.setText(sHour + ":" + sMinute);
+                            }
+                        }, hour, minutes, true);
+                picker1.show();
+            }
+        });
         ArrayAdapter<Location> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, locations);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         locationSpinner.setAdapter(adapter);
@@ -66,8 +119,8 @@ public class CreateRequestActivity extends AppCompatActivity implements AdapterV
         createRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String date = dateText.getText().toString();
-                String time = timeText.getText().toString();
+                String date = eText.getText().toString();
+                String time = eText1.getText().toString();
                 String money = moneyText.getText().toString();
                 if (location != null && !date.equals("") && !time.equals("") && !money.equals("")) {
                     final Request request = new Request(model.getCurrentUser().getUid(), date, time, location.getLid(), money);
