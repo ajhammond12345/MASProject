@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText password;
     private EditText password1;
     private EditText email;
+    private EditText firstName;
+    private EditText lastName;
     private Button button_register;
     private Button button_login;
     private SignInButton googleSignInBtn;
@@ -58,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         email = (EditText) findViewById(R.id.signup_email_input);
+        firstName = (EditText) findViewById(R.id.signup_first_name);
+        lastName = (EditText) findViewById(R.id.signup_last_name);
         password = (EditText) findViewById(R.id.signup_password_input);
         password1 = (EditText) findViewById(R.id.signup_password_input1);
         button_register = (Button) findViewById(R.id.button_register);
@@ -159,11 +163,21 @@ public class MainActivity extends AppCompatActivity {
 
     public void registerUser() {
         final String userEmail = email.getText().toString().trim();
+        final String userFName = firstName.getText().toString().trim();
+        final String userLName = lastName.getText().toString().trim();
         String userPassword = password.getText().toString().trim();
         String userPassword1 = password1.getText().toString().trim();
 
         if( TextUtils.isEmpty( userEmail ) ) {
             Toast.makeText(this, "Email field is empty.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if( TextUtils.isEmpty( userFName ) ) {
+            Toast.makeText(this, "First name field is empty.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if( TextUtils.isEmpty( userLName ) ) {
+            Toast.makeText(this, "Last name field is empty.", Toast.LENGTH_SHORT).show();
             return;
         }
         if( TextUtils.isEmpty( userPassword ) ) {
@@ -190,7 +204,7 @@ public class MainActivity extends AppCompatActivity {
                     if ( task.isSuccessful() ) {
                         // User is successfully registered and logged in; begin profile activity
                         Toast.makeText( MainActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
-                        User user = new User(userEmail);
+                        User user = new User(mAuth.getUid(), userFName, userLName, userEmail, "");
                         Model.getInstance().setCurrentUser(user);
                         finish();
                         startActivity( new Intent( getApplicationContext(), HomeActivity.class));
