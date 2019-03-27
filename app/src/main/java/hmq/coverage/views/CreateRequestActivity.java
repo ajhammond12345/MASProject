@@ -66,7 +66,10 @@ public class CreateRequestActivity extends AppCompatActivity implements AdapterV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_request);
 
-        dateText = findViewById(R.id.time);
+        Date now = new Date();
+        DateFormat aFormat = new SimpleDateFormat("dd/M/yyyy");
+        dateText = findViewById(R.id.date1);
+        dateText.setText(aFormat.format(now));
         timeText = findViewById(R.id.time);
         locationSpinner = findViewById(R.id.location_select);
         List<Location> locations = new ArrayList<>(model.getLocations());

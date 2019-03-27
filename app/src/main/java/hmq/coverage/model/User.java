@@ -8,34 +8,39 @@ public class User {
     String uid;
     String fname;
     String lname;
+    String phone;
     String email;
     //TODO Add list of requests the user has posted
     //TODO Add list of requests the user is covering
 
-    public User(String id, String f, String l, String e) {
+    public User(String id, String f, String l, String e, String p) {
         uid = id;
         fname = f;
         lname = l;
         email = e;
+        phone = p;
     }
+
+    public User(String id, String e) {
+        this(id, "", "", e, "");
+    }
+
+    public User(String e) {
+        this("", "", "", e, "");
+    }
+
+    public User() {
+        this("", "", "", "", "");
+    }
+
+
+
 
     public void updateUser(String id, String f, String l, String e) {
         uid = id;
         fname = f;
         lname = l;
         email = e;
-    }
-
-    public User(String id, String e) {
-        this(id, "", "", e);
-    }
-
-    public User(String e) {
-        this("", "", "", e);
-    }
-
-    public User() {
-        this("", "", "", "");
     }
 
     public String getUid() {
@@ -51,6 +56,8 @@ public class User {
     public String getEmail() {
         return email;
     }
+
+    public String getPhone() { return phone; }
 
     public String toString() {
         String name = "";
