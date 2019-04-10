@@ -20,21 +20,12 @@
         android:textSize="30sp" />
 
     <EditText
-        android:id="@+id/signup_email_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        android:padding="10dp" />
-
-    <EditText
         android:id="@+id/signup_first_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:hint="First Name"
-        android:inputType="textEmailAddress"
+        android:inputType="textPersonName"
         android:padding="10dp" />
 
     <EditText
@@ -43,6 +34,15 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:hint="Last Name"
+        android:inputType="textPersonName"
+        android:padding="10dp" />
+
+    <EditText
+        android:id="@+id/signup_email_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:hint="Email"
         android:inputType="textEmailAddress"
         android:padding="10dp" />
 

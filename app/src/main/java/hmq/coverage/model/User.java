@@ -2,6 +2,7 @@ package hmq.coverage.model;
 
 /**
  * Created by AlexanderHammond on 2/27/19.
+ * @author Stuart Malone
  */
 
 public class User {
