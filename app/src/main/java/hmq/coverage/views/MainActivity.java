@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText email;
     private EditText firstName;
     private EditText lastName;
-    //private EditText phoneNumber;
+    private EditText phoneNumber;
     private Button button_register;
     private Button button_login;
     private SignInButton googleSignInBtn;
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         email = (EditText) findViewById(R.id.signup_email_input);
         firstName = (EditText) findViewById(R.id.signup_first_name);
         lastName = (EditText) findViewById(R.id.signup_last_name);
-        //phoneNumber = (EditText) findViewById(R.id.signup_phone_number);
+        phoneNumber = (EditText) findViewById(R.id.signup_phone_number);
         password = (EditText) findViewById(R.id.signup_password_input);
         password1 = (EditText) findViewById(R.id.signup_password_input1);
         button_register = (Button) findViewById(R.id.button_register);
@@ -167,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
         final String userEmail = email.getText().toString().trim();
         final String userFirstName = firstName.getText().toString().trim();
         final String userLastName = lastName.getText().toString().trim();
-        //final String userPhoneNumber = phoneNumber.getText().toString().trim();
+        final String userPhoneNumber = phoneNumber.getText().toString().trim();
         String userPassword = password.getText().toString().trim();
         String userPassword1 = password1.getText().toString().trim();
 
@@ -183,10 +183,10 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Last name field is empty.", Toast.LENGTH_SHORT).show();
             return;
         }
-        /*if( TextUtils.isEmpty( userPhoneNumber ) ) {
+        if( TextUtils.isEmpty( userPhoneNumber ) ) {
             Toast.makeText(this, "Phone number field is empty.", Toast.LENGTH_SHORT).show();
             return;
-        }*/
+        }
         if( TextUtils.isEmpty( userPassword ) ) {
             Toast.makeText(this, "Password field is empty.", Toast.LENGTH_SHORT).show();
             return;
@@ -213,7 +213,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("Attempt Signup", "Signup attempted");
                         // User is successfully registered and logged in; begin profile activity
                         Toast.makeText( MainActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
-                        User user = new User(mAuth.getUid(), userFirstName, userLastName, userEmail, "");
+                        User user = new User(mAuth.getUid(), userFirstName, userLastName, userEmail, userPhoneNumber);
                         Model.getInstance().setCurrentUser(user);
                         finish();
                         startActivity( new Intent( getApplicationContext(), HomeActivity.class));

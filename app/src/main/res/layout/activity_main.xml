@@ -47,6 +47,15 @@
         android:padding="10dp" />
 
     <EditText
+        android:id="@+id/signup_phone_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:hint="Phone"
+        android:padding="10dp"
+        android:inputType="phone" />
+
+    <EditText
         android:id="@+id/signup_password_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
