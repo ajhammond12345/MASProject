@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by AlexanderHammond on 2/27/19.
+ * @author Alexander Hammond
  */
 
 public class Request {
