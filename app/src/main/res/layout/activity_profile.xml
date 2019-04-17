@@ -21,6 +21,15 @@ android:background="@color/colorPrimary"
             android:textSize="30sp"
             android:text="Profile"
             android:textColor="#000"/>
+
+        <TextView
+            android:id="@+id/profile_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:padding="10dp"
+            android:text="Name" />
+
         <TextView
             android:padding="10dp"
             android:layout_margin="5dp"
@@ -35,6 +44,14 @@ android:background="@color/colorPrimary"
             <!--android:layout_height="wrap_content"-->
             <!--android:text="Email"-->
             <!--android:id="@+id/profileUid"/>-->
+        <TextView
+            android:id="@+id/profile_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:padding="10dp"
+            android:text="Phone" />
+
         <Button
             android:id="@+id/button_logout"
             android:layout_width="match_parent"

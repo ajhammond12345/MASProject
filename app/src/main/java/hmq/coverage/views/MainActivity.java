@@ -214,7 +214,7 @@ public class MainActivity extends AppCompatActivity {
                         // User is successfully registered and logged in; begin profile activity
                         Toast.makeText( MainActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
                         User user = new User(mAuth.getUid(), userFirstName, userLastName, userEmail, userPhoneNumber);
-                        Model.getInstance().setCurrentUser(user);
+                        Model.getInstance().updateCurrentUser(user);
                         finish();
                         startActivity( new Intent( getApplicationContext(), HomeActivity.class));
                     } else {

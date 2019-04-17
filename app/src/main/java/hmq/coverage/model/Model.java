@@ -49,7 +49,7 @@ public class Model {
      *
      * @param user the new current user
      */
-    public void setCurrentUser(User user) {
+    private void setCurrentUser(User user) {
         currentUser = user;
     }
 
@@ -109,6 +109,12 @@ public class Model {
             public void onFailed() {
             }
         });
+    }
+
+
+    public void getUser(String userID, OnGetDataInterface listener) {
+        Database db = new Database();
+        db.getUser(userID, listener);
     }
 
 

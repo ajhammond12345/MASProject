@@ -18,8 +18,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
 
 import hmq.coverage.R;
+import hmq.coverage.interfaces.OnGetDataInterface;
 import hmq.coverage.model.Model;
 import hmq.coverage.model.User;
 
@@ -62,10 +64,21 @@ public class LoginActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if ( task.isSuccessful() ) {
                     currentUser = mAuth.getCurrentUser();
-                    User current = new User(currentUser.getUid(), currentUser.getEmail());
-                    Model.getInstance().setCurrentUser(current);
-                    finish();
-                    startActivity( new Intent( getApplicationContext(), HomeActivity.class ) );
+                    //TODO load user from firebase
+                    Model.getInstance().getUser(currentUser.getUid(), new OnGetDataInterface() {
+                        @Override
+                        public void onDataRetrieved(DataSnapshot data) {
+                            User user = data.getValue(User.class);
+                            Model.getInstance().updateCurrentUser(user);
+                            finish();
+                            startActivity( new Intent( getApplicationContext(), HomeActivity.class ) );
+                        }
+
+                        @Override
+                        public void onFailed() {
+                            Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 } else {
                     Toast.makeText(LoginActivity.this, "Unable to Login", Toast.LENGTH_SHORT).show();
                 }

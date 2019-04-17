@@ -60,7 +60,7 @@ public class User {
 
     public String getPhone() { return phone; }
 
-    public String toString() {
+    public String getName() {
         String name = "";
         if (!fname.equals("")) {
             name = name + fname;
@@ -76,6 +76,10 @@ public class User {
         } else {
             return name;
         }
+    }
+
+    public String toString() {
+        return getName();
     }
 
     public boolean equals(Object obj) {
