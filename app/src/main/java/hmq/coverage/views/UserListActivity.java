@@ -8,13 +8,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 
-import com.google.firebase.database.DataSnapshot;
-
 import hmq.coverage.R;
-import hmq.coverage.interfaces.OnGetDataInterface;
-import hmq.coverage.model.Location;
 import hmq.coverage.model.Model;
-import hmq.coverage.model.Request;
 import hmq.coverage.model.User;
 
 public class UserListActivity extends AppCompatActivity {
@@ -33,7 +28,7 @@ public class UserListActivity extends AppCompatActivity {
             // viewHolder.getItemId();
             // viewHolder.getItemViewType();
             // viewHolder.itemView;
-            User selected = Model.getInstance().getCurrentLocation().getCheckedIn().get(position);
+            User selected = Model.getInstance().getCurrentLocation().retrieveCheckedIn().get(position);
             Model.getInstance().setSelectedUser(selected);
             startActivity( new Intent( getApplicationContext(), UserDetailActivity.class));
         }
@@ -55,7 +50,7 @@ public class UserListActivity extends AppCompatActivity {
 
         // specify an adapter (see also next example)
 
-        mAdapter = new UserRecyclerAdapter(Model.getInstance().getCurrentLocation().getCheckedIn());
+        mAdapter = new UserRecyclerAdapter(Model.getInstance().getCurrentLocation().retrieveCheckedIn());
         recyclerView.setAdapter(mAdapter);
         mAdapter.setmOnItemClickListener(onItemClickListener);
 

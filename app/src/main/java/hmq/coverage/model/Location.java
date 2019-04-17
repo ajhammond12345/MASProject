@@ -1,7 +1,10 @@
 package hmq.coverage.model;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by AlexanderHammond on 2/27/19.
@@ -10,10 +13,10 @@ import java.util.List;
 public class Location {
     String lid;
     String name;
-    List<User> checkedIn;
-    List<Request> requests;
+    Map<String, User> checkedIn;
+    Map<String, Request> requests;
 
-    public Location(String id, String n, List<User> u, List<Request> r) {
+    public Location(String id, String n, Map<String, User> u, Map<String, Request> r) {
         lid = id;
         name = n;
         checkedIn = u;
@@ -21,11 +24,11 @@ public class Location {
     }
 
     public Location(String n) {
-        this("", n, new ArrayList<User>(), new ArrayList<Request>());
+        this("", n, new HashMap<String, User>(), new HashMap<String, Request>());
     }
 
     public Location() {
-        this("", "", new ArrayList<User>(), new ArrayList<Request>());
+        this("", "", new HashMap<String, User>(), new HashMap<String, Request>());
     }
 
     public String getLid() {
@@ -33,16 +36,15 @@ public class Location {
     }
     //Eventually add more as project progresses, initially can just be a name.
 
-    public List<Request> getRequests() {
-        return requests;
+    public List<Request> retrieveRequestsList() {
+        return new ArrayList<Request>(requests.values());
     }
 
-    public List<User> getCheckedIn() {
-        return checkedIn;
+    public List<User> retrieveCheckedIn() {
+        return new ArrayList<>(checkedIn.values());
     }
-
     public void addRequest(Request request) {
-        requests.add(request);
+        requests.put(request.rid, request);
     }
 
     public void removeRequest(Request request) {
@@ -51,11 +53,11 @@ public class Location {
 
 
     public void checkIn(User user) {
-        checkedIn.add(user);
+        checkedIn.put(user.uid, user);
     }
 
     public void checkOut(User user) {
-        checkedIn.remove(user);
+        checkedIn.remove(user.uid);
     }
 
     @Override

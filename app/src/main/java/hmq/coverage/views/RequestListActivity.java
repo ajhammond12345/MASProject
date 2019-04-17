@@ -5,11 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 
@@ -36,7 +33,7 @@ public class RequestListActivity extends AppCompatActivity {
             // viewHolder.getItemId();
             // viewHolder.getItemViewType();
             // viewHolder.itemView;
-            Request selected = Model.getInstance().getCurrentLocation().getRequests().get(position);
+            Request selected = Model.getInstance().getCurrentLocation().retrieveRequestsList().get(position);
             Model.getInstance().setCurrentRequest(selected);
             startActivity( new Intent( getApplicationContext(), RequestDetailActivity.class));
         }
@@ -58,7 +55,7 @@ public class RequestListActivity extends AppCompatActivity {
 
         // specify an adapter (see also next example)
 
-        mAdapter = new RecyclerAdapter(Model.getInstance().getCurrentLocation().getRequests());
+        mAdapter = new RecyclerAdapter(Model.getInstance().getCurrentLocation().retrieveRequestsList());
         recyclerView.setAdapter(mAdapter);
         mAdapter.setmOnItemClickListener(onItemClickListener);
 
